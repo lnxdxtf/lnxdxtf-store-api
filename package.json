@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:run": "ts-node-dev --transpile-only --ignore-watch node_modules bin/server.ts"
+    "dev:run": "ts-node-dev --transpile-only --ignore-watch node_modules ./bin/server.ts"
   },
   "keywords": [],
   "author": "",
