@@ -13,7 +13,7 @@ exports.get = (request: Request, response: Response)=>{
         }).catch((e: any) => {
             response.status(400).send(e)
         })
-    return console.log('HTTP-GET-200-OK')
+    return console.log('---HTTP-GET-200-OK')
 };
 
 exports.getBySlug = (request: Request, response: Response)=>{
@@ -25,7 +25,7 @@ exports.getBySlug = (request: Request, response: Response)=>{
         }).catch((e: any) => {
             response.status(400).send(e)
         })
-    return console.log('HTTP-GET_BY_SLUG-200-OK')
+    return console.log('---HTTP-GET_BY_SLUG-200-OK')
 };
 
 exports.getById = (request: Request, response: Response)=>{
@@ -38,7 +38,7 @@ exports.getById = (request: Request, response: Response)=>{
         }).catch((e: any) => {
             response.status(400).send(e)
         })
-    return console.log('HTTP-GET_BY_ID-200-OK')
+    return console.log('---HTTP-GET_BY_ID-200-OK')
 };
 
 exports.getByTag = (request: Request, response: Response)=>{
@@ -50,7 +50,7 @@ exports.getByTag = (request: Request, response: Response)=>{
         }).catch((e: any) => {
             response.status(400).send(e)
         })
-    return console.log('HTTP-GET_BY_TAG-200-OK')
+    return console.log('---HTTP-GET_BY_TAG-200-OK')
 };
 //=============================================================================
 //==========================POST===============================================
@@ -68,7 +68,7 @@ exports.post = (request: Request, response:Response)=>{
                 data: e
             })
         })
-    return console.log('HTTP-POST-201-OK')
+    return console.log('---HTTP-POST-201-OK')
 };
 //=============================================================================
 //===============================PUT===========================================
@@ -93,12 +93,22 @@ exports.put = (request: Request, response:Response)=>{
             })
         })
     
-    return console.log('HTTP-PUT_BY_ID_AND_UPDATE-201-OK')
+    return console.log('---HTTP-PUT_BY_ID_AND_UPDATE-201-OK')
 };
 //===============================================================================
 //===================================DELETE======================================
 exports.delete = (request: Request, response:Response)=>{
-    const id = request.params.id
-    response.status(200).send({id:id+" Apagado com sucesso!"})
-    return console.log('HTTP-DELETE-200-OK')
+    Product
+        .findOneAndRemove(request.body.id)
+            .then( (x: any)=>{
+                response.status(201).send({
+                    message: 'Produto REMOVIDO com sucesso!'
+                })
+            }).catch((e: any)=> {
+                response.status(400).send({
+                    message: 'Falha ao REMOVER o produto!',
+                    data: e
+                })
+        })
+    return console.log('---HTTP-DELETE_BY_ID-200-OK')
 };
