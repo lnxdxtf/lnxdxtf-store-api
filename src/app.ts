@@ -14,6 +14,10 @@ mongoose.connect(connectionString)        //||==================================
 //============================================
 //===================Carregar Modelos=========
 const Produtct = require('./models/modelProduct')
+
+const Customer = require('./models/customer')
+
+const Order = require('./models/order')
 //============================================
 //==================rotas=====================
 
