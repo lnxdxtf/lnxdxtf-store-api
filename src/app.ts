@@ -9,7 +9,7 @@ app.use(express.json())
 //mongodb - mongoose//========================
 const mongoose = require('mongoose')      //||
 //mongoose-conexão======================================================================
-const connectionString = 'mongodb+srv://sa:123qwe@cluster-01.pb6qj.mongodb.net/test'//||
+const connectionString = 'mongodb+srv://lnxdxtf:147852369n@cluster0.1hqwn.mongodb.net/test'//||
 mongoose.connect(connectionString)        //||==========================================
 //============================================
 //===================Carregar Modelos=========
