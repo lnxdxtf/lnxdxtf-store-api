@@ -1,9 +1,5 @@
 import Express,{Request,Response} from "express";
 
-
-//==============
-const mongoose = require('mongoose')
-const Product = mongoose.model('Product')
 //============== validator
 const ValidationContract = require('../validators/fluent-validator')
 //============== repository
