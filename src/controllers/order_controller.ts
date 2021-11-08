@@ -1,4 +1,5 @@
 import Express,{Request,Response} from "express";
+const authService = require('../services/auth_service')
 
 const guid = require('guid')
 //============== repository
@@ -16,13 +17,15 @@ exports.get = async(request: Request, response: Response)=>{
 };
 
 exports.post = async(request: Request, response:Response)=>{
-    let req = {
-        customer:request.body.customer,
-        number: guid.raw().substring(0,6),
-        items: request.body.items
-    }
     try{
-        await repository.create(req)
+        const token = request.body.token || request.query.token || request.headers['x-access-token'] 
+        const data = await authService.decodeToken(token)
+
+        await repository.create({
+            customer:data.id,
+            number: guid.raw().substring(0,6),
+            items: request.body.items
+        })
         response.status(201).send({message: "Pedido cadastrado com sucesso!"})
         console.log('---HTTP-POST-201-OK')
     } catch(e) {
