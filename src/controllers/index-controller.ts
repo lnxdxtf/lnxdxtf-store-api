@@ -65,6 +65,7 @@ exports.post = async(request: Request, response:Response)=>{
         console.log('---HTTP-POST-201-OK')
     } catch(e) {
         response.status(500).send({message: "Falha ao processar sua requisição!"})
+        console.log(e)
         console.log("xxx - HTTP-POST-FAILED")
     }
 };

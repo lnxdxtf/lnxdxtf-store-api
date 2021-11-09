@@ -31,7 +31,8 @@ exports.post = async(request: Request, response:Response)=>{
         await repository.create({
             name: request.body.name,
             email: request.body.email,
-            password: md5(request.body.password + global.SALT_KEY)
+            password: md5(request.body.password + global.SALT_KEY),
+            roles:['user']
         })
 
         emailService.send(
@@ -67,7 +68,8 @@ exports.authenticate = async(request: Request, response:Response)=>{
         const token = await authService.generateToken({
             id: customer._id,
             email: customer.email,
-            name: customer.name
+            name: customer.name,
+            roles: customer.roles
         })
 
         emailService.send(
@@ -107,7 +109,8 @@ exports.refreshToken = async(request: Request, response:Response)=>{
         const tokenData = await authService.generateToken({
             id: customer._id,
             email: customer.email,
-            name: customer.name
+            name: customer.name,
+            roles: customer.roles
         })
         emailService.send(
             customer.email,
